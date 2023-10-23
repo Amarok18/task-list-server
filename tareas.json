@@ -1,0 +1,23 @@
+[
+    {
+        "id":1,
+        "description":"Estudiar Javascript",
+        "estado": "pendiente"
+    },
+    {
+        "id":2,
+        "description":"Estudiar NodeJs",
+        "estado": "pendiente"
+    },
+    {
+        "id":3,
+        "description":"Estudiar Html",
+        "estado": "completado"
+    },
+    {
+        "id":4,
+        "description":"Estudiar CSS",
+        "estado": "completado"
+    }
+    
+]
