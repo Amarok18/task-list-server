@@ -1,36 +1,21 @@
 const express = require('express');
 const host = 'localhost';
 const app = express();
-const port = 8010;
+const port = 8000;
+const router = require('./routes/list-view-router');
+const router2 = require('./routes/list-edit-router');
 
-const listadeTareas = [
-    {
-        id:1,
-        description:"Estudiar Javascript",
-        estado: "pendiente"
-    },
-    {
-        id:2,
-        description:"Estudiar NodeJs",
-        estado: "pendiente"
-    },
-    {
-        id:3,
-        description:"Estudiar Html",
-        estado: "completado"
-    },
-    {
-        id:4,
-        description:"Estudiar CSS",
-        estado: "completado"
-    },
-    
-];
 
-app.get("/ListadeTareas",(req,res)=>{
-    res.status(200).json(listadeTareas)
-})
+app.use(express.json());
+
+app.use('/listaDeTareas',router);
+app.use('/listaDeTareas',router2);
+
+app.get("/",(req,res)=>{
+    res.status(200).send("Bienvenidos")
+});
 
 app.listen(port, host, () => {
   console.log(`Servidor en funcionamiento en http://${host}:${port}`);
 });
+
