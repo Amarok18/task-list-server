@@ -5,7 +5,13 @@ const port = 8000;
 const router = require('./routes/list-view-router');
 const router2 = require('./routes/list-edit-router');
 
-
+const middlewareMetodos = (req,res,next)=>{
+    if(req.method !== 'GET'&& req.method !== 'POST'&& req.method !== 'PUT' && req.method !== 'DELETE'){
+      res.status(400).send("No son metodos disponibles")
+    }
+    next();
+}
+app.use(middlewareMetodos);
 app.use(express.json());
 
 app.use('/listaDeTareas',router);

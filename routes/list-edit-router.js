@@ -2,6 +2,27 @@ const express = require('express');
 const router2 = express.Router();
 const listaDeTareas = require("../tareas.json");
 
+const middleware = function(req,res,next){
+  if (req.method === 'POST') {
+    if (!req.body || Object.keys(req.body).length==0) {
+      return res.status(400).send("No se puede enviar un cuerpo vacío en la solicitud.");
+    }
+    if (!req.body.hasOwnProperty('id') || !req.body.hasOwnProperty('description')||!req.body.hasOwnProperty('estado')) {
+      return res.status(400).send("Faltan atributos: id,description,estado");
+    }
+  }else if(req.method === 'PUT'){
+    if (!req.body || Object.keys(req.body).length==0) {
+      return res.status(400).send("No se puede enviar un cuerpo vacío en la solicitud.");
+    }
+    if (!req.body.hasOwnProperty('description')||!req.body.hasOwnProperty('estado')) {
+      return res.status(400).send("Faltan atributos: id,description,estado");
+    }
+  }
+
+  next();
+};
+
+router2.use(middleware);
 
 router2.post("/nuevaTarea",(req,res)=>{
   const nuevaTarea = req.body;
@@ -31,7 +52,7 @@ router2.delete("/eliminar/:id", (req, res) => {
   const indice = listaDeTareas.findIndex((tareas) => tareas.id == tareaId);
   console.log(indice);
   if (indice == -1) {
-    res.status(400).send({ mensaje: "Tarea no encontrado" });
+    res.status(404).send({ mensaje: "Tarea no encontrado" });
   } else {
     listaDeTareas.splice(indice, 1);
     res.sendStatus(204);
