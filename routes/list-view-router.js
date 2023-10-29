@@ -2,12 +2,15 @@ const express = require('express');
 const router = express.Router();
 const listaDeTareas = require("../tareas.json");
 
-router.param('estado', (req, res, next, estado) => {
-    if (!estado || (estado !== 'completado' && estado !== 'pendiente')) {
-        return res.status(400).send("Parámetros no válidos");
+const validarRuta = (req,res,next)=>{
+    if(req.path === "/completado" || req.path === "/pendiente"){
+      next();
+    }else{
+      res.status(400).send("Esta no es una ruta permitida prueba con completado o pendiente")
     }
-    next();
-});
+}
+
+router.use(validarRuta);
 
 router.get("/",(req,res)=>{
   res.send(listaDeTareas); 
@@ -23,4 +26,5 @@ router.get("/pendiente",(req, res) => {
   return res.send(tareas);
   
 });
+
 module.exports = router;                              
