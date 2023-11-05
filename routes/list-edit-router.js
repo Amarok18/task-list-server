@@ -2,6 +2,7 @@ const express = require('express');
 const router2 = express.Router();
 const listaDeTareas = require("../tareas.json");
 
+
 const middleware = function(req,res,next){
   if (req.method === 'POST') {
     if (!req.body || Object.keys(req.body).length==0) {
@@ -24,7 +25,7 @@ const middleware = function(req,res,next){
 
 router2.use(middleware);
 
-router2.post("/nuevaTarea",(req,res)=>{
+router2.post("/agregarTarea",(req,res)=>{
   const nuevaTarea = req.body;
   listaDeTareas.push(nuevaTarea);
   res.status(201).send(listaDeTareas)
