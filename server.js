@@ -45,7 +45,7 @@ app.use(middlewareMetodos);
 app.use(express.json());
 
 app.use('/listaDeTareas',router);
-app.use('/listaDeTareas',router2);
+app.use('/crudlistaDeTareas',router2);
 
 app.get("/",(req,res)=>{
     res.status(200).send("Bienvenidos")
