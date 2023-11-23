@@ -27,8 +27,13 @@ router2.use(middleware);
 
 router2.post("/agregarTarea",(req,res)=>{
   const nuevaTarea = req.body;
+  const existeID = listaDeTareas.find(tarea=>tarea.id === nuevaTarea.id);
+  if(existeID){
+    return res.status(400).send("Ya existe una tarea con ese id");
+  }else{
   listaDeTareas.push(nuevaTarea);
-  res.status(201).send(listaDeTareas)
+  res.status(201).send(listaDeTareas);
+  }
 });
 
 router2.put("/actualizar/:id", (req, res) => {

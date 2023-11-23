@@ -45,8 +45,8 @@ const validarToken = (req,res,next)=>{
   app.use(middlewareMetodos);
   app.use(express.json());
   
-  app.use('/tareas',validarToken,router);
-  app.use('/tareas',validarToken,router2);
+  app.use('/login/tareas',validarToken,router);
+  app.use('/login/crudtareas',validarToken,router2);
   
   app.post("/login",(req,res)=>{
     const {email,password}=req.body;
