@@ -2,11 +2,13 @@
     {
         "id":1,
         "description":"Estudiar Javascript",
+        "isCompleted":true,
         "estado": "pendiente"
     },
     {
         "id":2,
         "description":"Estudiar NodeJs",
+        "isCompleted":false,
         "estado": "pendiente"
     },
     {

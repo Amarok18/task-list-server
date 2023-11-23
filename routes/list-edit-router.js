@@ -35,7 +35,7 @@ router2.put("/actualizar/:id", (req, res) => {
   const tareaBody = req.body;
   console.log(tareaId);
   const indice = listaDeTareas.findIndex((tarea) => tarea.id == tareaId);
-  console.log(listaDeTareas[indice]);
+  // console.log(listaDeTareas[indice]);
   if (indice != -1) {
     tareaBody.id=tareaId;
     listaDeTareas[indice] = tareaBody;
