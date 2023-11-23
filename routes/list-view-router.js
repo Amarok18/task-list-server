@@ -3,7 +3,7 @@ const router = express.Router();
 const listaDeTareas = require("../tareas.json");
 
 const validarRuta = (req,res,next)=>{
-    if(req.path === "/completado" || req.path === "/pendiente"){
+    if(req.path === "/completado" || req.path === "/pendiente" || req.path === "/"){
       next();
     }else{
       res.status(400).send("Esta no es una ruta permitida prueba con completado o pendiente")
